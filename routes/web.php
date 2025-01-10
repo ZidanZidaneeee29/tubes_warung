@@ -3,6 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
+
+
+Route::get('/products', function () {
+    return view('products');
+})->name('products');
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,5 +23,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // Menampilkan form
+Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // Menyimpan data
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit'); // Menampilkan form edit
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update'); // Memproses update data
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
 
 require __DIR__.'/auth.php';
