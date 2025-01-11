@@ -13,6 +13,9 @@ class ProductSeeder extends Seeder
             'name' => 'Produk A',
             'stock' => 50,
             'harga' => 15000.00,
+            'created_at' =>now(),
+            'updated_at' =>now(),
+
         ]);
 
         Product::create([
